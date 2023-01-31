@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "MyTonWallet · My TON Wallet",
-  "description": "The most feature-rich TON extension – with support of multi-accounts, tokens, NFT, TON DNS, TON Sites, TON Proxy, and TON Magic.",
+  "name": "TG TON WALLET",
+  "description": "TG TON WALLET",
   "version": "%%VERSION%%",
   "icons": {
     "192": "icon-192x192.png",
