@@ -157,11 +157,13 @@ export async function sendTransaction(params: {
         processedData = data;
     }
   }
+  console.log("TG_LOG: sendTransaction: processedData", processedData)
 
   const processedStateInit = stateInit ? ton.oneCellFromBoc(base64ToBytes(stateInit)) : undefined;
 
   await openPopupWindow();
 
+  console.log("TG_LOG: sendTransaction: storage, accountId, TON_TOKEN_SLUG, toAddress, amount, processedData, processedStateInit", storage, accountId, TON_TOKEN_SLUG, toAddress, amount, processedData, processedStateInit)
   const checkResult = await ton.checkTransactionDraft(
     storage, accountId, TON_TOKEN_SLUG, toAddress, amount, processedData, processedStateInit,
   );
