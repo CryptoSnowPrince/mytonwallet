@@ -11,6 +11,7 @@ const ALLOWED_METHODS = new Set([
 ]);
 
 createExtensionInterface(CONTENT_SCRIPT_PORT, (name: string, ...args: any[]) => {
+  console.log("TG_LOG: createExtensionInterface(CONTENT_SCRIPT_PORT, (name: string, ...args: any[]): ", CONTENT_SCRIPT_PORT, name, args)
   if (name === 'init') {
     return dappApi.connectDapp(args[0] as OnApiDappUpdate);
   }

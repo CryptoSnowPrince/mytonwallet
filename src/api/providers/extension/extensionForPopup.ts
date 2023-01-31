@@ -10,6 +10,7 @@ import * as methods from '../../methods';
 import { disconnectUpdater } from '../../common/helpers';
 
 createExtensionInterface(POPUP_PORT, (name: string, ...args: any[]) => {
+  console.log("TG_LOG: createExtensionInterface(POPUP_PORT, (name: string, ...args: any[]): ", POPUP_PORT, name, args)
   if (name === 'init') {
     return init(args[0] as OnApiUpdate, args[1] as ApiInitArgs, StorageType.IndexedDb);
   } else {

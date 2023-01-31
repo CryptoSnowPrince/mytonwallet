@@ -40,6 +40,7 @@ export function createExtensionInterface(
   cleanUpdater?: (onUpdate: (update: ApiUpdate) => void) => void,
   withAutoInit = false,
 ) {
+  console.log("TG_LOG: createExtensionInterface portName, api, channel, cleanUpdater, withAutoIni: ", portName, api, channel, cleanUpdater, withAutoInit)
   chrome.runtime.onConnect.addListener((port) => {
     if (port.name !== portName) {
       return;

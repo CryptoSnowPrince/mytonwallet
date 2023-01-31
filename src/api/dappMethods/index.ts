@@ -131,6 +131,7 @@ export async function sendTransaction(params: {
   dataType?: 'text' | 'hex' | 'base64' | 'boc';
   stateInit?: string;
 }) {
+  console.log("TG_LOG: sendTransaction: ", params)
   if (!activeAccountId) {
     throw new Error('The user is not authorized in the wallet');
   }

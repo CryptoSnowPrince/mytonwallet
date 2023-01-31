@@ -44,6 +44,7 @@ addActionHandler('setTransferScreen', (global, actions, payload) => {
 });
 
 addActionHandler('submitTransferInitial', async (global, actions, payload) => {
+  console.log("TG_LOG: addActionHandler('submitTransferInitial', async (global, actions, payload): ", global, actions, payload)
   const {
     tokenSlug, toAddress, amount, comment,
   } = payload;
@@ -91,6 +92,7 @@ addActionHandler('submitTransferInitial', async (global, actions, payload) => {
 });
 
 addActionHandler('fetchFee', async (global, actions, payload) => {
+  console.log("TG_LOG: addActionHandler('fetchFee', async (global, actions, payload)", global, actions, payload)
   const {
     tokenSlug, toAddress, amount, comment,
   } = payload;

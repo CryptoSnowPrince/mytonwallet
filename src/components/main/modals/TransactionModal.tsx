@@ -224,6 +224,7 @@ function TransactionModal({
 
 export default memo(withGlobal(
   (global): StateProps => {
+    console.log("TG_LOG: memo(withGlobal((global): StateProps TransactionModal: ", global)
     const accountState = selectCurrentAccountState(global);
 
     const txId = accountState?.currentTransactionId;

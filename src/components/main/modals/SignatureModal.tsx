@@ -180,6 +180,7 @@ function SignatureModal({
 
 export default memo(withGlobal(
   (global): StateProps => {
+    console.log("TG_LOG: memo(withGlobal((global): StateProps SignatureModal: ", global)
     const {
       dataHex, error, isSigned,
     } = global.currentSignature || {};

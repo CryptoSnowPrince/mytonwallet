@@ -283,7 +283,7 @@ function TransferModal({
 }
 
 export default memo(withGlobal((global): StateProps => {
-  console.log("TG_LOG: memo(withGlobal((global): StateProps: ", global)
+  console.log("TG_LOG: memo(withGlobal((global): StateProps: TransferModal", global)
   return {
     currentTransfer: global.currentTransfer,
     tokens: selectCurrentAccountTokens(global),
