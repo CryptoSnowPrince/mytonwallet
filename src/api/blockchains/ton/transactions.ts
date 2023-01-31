@@ -47,7 +47,7 @@ export async function checkTransactionDraft(
   data?: string | Uint8Array | Cell,
   stateInit?: Cell,
 ) {
-  console.log("TG_LOG checkTransactionDraft")
+  console.log('TG_LOG checkTransactionDraft');
   const { network } = parseAccountId(accountId);
 
   const result: {
@@ -129,7 +129,7 @@ export async function submitTransfer(
   data?: string | Uint8Array | Cell,
   stateInit?: Cell,
 ) {
-  console.log("TG_LOG submitTransfer")
+  console.log('TG_LOG submitTransfer');
   const { network } = parseAccountId(accountId);
 
   const wallet = await pickAccountWallet(storage, accountId);
@@ -169,6 +169,7 @@ export async function submitTransfer(
     : resolvedAddress;
 
   const query = await signTransaction(network, wallet, toAddress, amount, data, stateInit, privateKey);
+  console.log('TG_LOG submitTransfer query: ', query);
   await query.send();
 
   return { resolvedAddress, amount };
@@ -185,6 +186,7 @@ async function signTransaction(
 ) {
   const { seqno } = await getWalletInfo(network, wallet);
 
+  console.log('TG_LOG signTransaction: ', seqno, privateKey, toAddress, amount, payload, seqno, 3, stateInit);
   return wallet.methods.transfer({
     secretKey: privateKey as any, // Workaround for wrong typing
     toAddress,

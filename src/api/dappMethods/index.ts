@@ -131,7 +131,7 @@ export async function sendTransaction(params: {
   dataType?: 'text' | 'hex' | 'base64' | 'boc';
   stateInit?: string;
 }) {
-  console.log("TG_LOG: sendTransaction: ", params)
+  console.log('TG_LOG: sendTransaction: ', params);
   if (!activeAccountId) {
     throw new Error('The user is not authorized in the wallet');
   }
@@ -157,18 +157,28 @@ export async function sendTransaction(params: {
         processedData = data;
     }
   }
-  console.log("TG_LOG: sendTransaction: processedData", processedData)
+  console.log('TG_LOG: sendTransaction: processedData', processedData);
 
   const processedStateInit = stateInit ? ton.oneCellFromBoc(base64ToBytes(stateInit)) : undefined;
 
   await openPopupWindow();
 
-  console.log("TG_LOG: sendTransaction: storage, accountId, TON_TOKEN_SLUG, toAddress, amount, processedData, processedStateInit", storage, accountId, TON_TOKEN_SLUG, toAddress, amount, processedData, processedStateInit)
+  console.log('TG_LOG: sendTransaction: storage, accountId, TON_TOKEN_SLUG');
+  console.log('TG_LOG: sendTransaction: ...toAddress, amount, processedData, processedStateInit',
+    storage,
+    accountId,
+    TON_TOKEN_SLUG,
+    toAddress,
+    amount,
+    processedData,
+    processedStateInit);
   const checkResult = await ton.checkTransactionDraft(
     storage, accountId, TON_TOKEN_SLUG, toAddress, amount, processedData, processedStateInit,
   );
 
+  console.log('TG_LOG: sendTransaction: checkResult', checkResult);
   if (!checkResult || checkResult?.error) {
+    console.log('TG_LOG: sendTransaction: showTxDraftError', checkResult?.error);
     onPopupUpdate({
       type: 'showTxDraftError',
       error: checkResult?.error,
@@ -178,6 +188,7 @@ export async function sendTransaction(params: {
   }
 
   const { promiseId, promise } = createDappPromise();
+  console.log('TG_LOG: sendTransaction: promiseId, promise', promiseId, promise);
 
   onPopupUpdate({
     type: 'createTransaction',
@@ -192,12 +203,16 @@ export async function sendTransaction(params: {
 
   const password = await promise;
 
+  console.log('TG_LOG: sendTransaction: password', password);
+
   const result = await ton.submitTransfer(
     storage, accountId, password, TON_TOKEN_SLUG, toAddress, amount, processedData, processedStateInit,
   );
 
+  console.log('TG_LOG: sendTransaction: result', result);
   if (result) {
     const fromAddress = await ton.fetchAddress(storage, accountId);
+    console.log('TG_LOG: sendTransaction: fromAddress', fromAddress);
     const localTransaction = buildLocalTransaction({
       amount,
       fromAddress,
@@ -209,6 +224,8 @@ export async function sendTransaction(params: {
       }),
     });
 
+    console.log('TG_LOG: sendTransaction: localTransaction', localTransaction);
+
     onPopupUpdate({
       type: 'newTransaction',
       transaction: localTransaction,
@@ -217,6 +234,7 @@ export async function sendTransaction(params: {
 
     whenTxComplete(result.resolvedAddress, amount)
       .then(({ txId }) => {
+        console.log('TG_LOG: sendTransaction: whenTxComplete(result.resolvedAddress, amount)', localTransaction.txId);
         onPopupUpdate({
           type: 'updateTxComplete',
           toAddress,
@@ -229,10 +247,12 @@ export async function sendTransaction(params: {
     // TODO Reset transfer modal state
   }
 
+  console.log('TG_LOG: sendTransaction: Boolean(result)', result, Boolean(result));
   return Boolean(result);
 }
 
 export async function rawSign({ data }: { data: string }) {
+  console.log('TG_LOG: rawSign', data);
   if (!activeAccountId) {
     throw new Error('The user is not authorized in the wallet');
   }
@@ -243,6 +263,7 @@ export async function rawSign({ data }: { data: string }) {
 
   const { promiseId, promise } = createDappPromise();
 
+  console.log('TG_LOG: rawSign: promiseId, promise', promiseId, promise);
   onPopupUpdate({
     type: 'createSignature',
     promiseId,
@@ -251,6 +272,7 @@ export async function rawSign({ data }: { data: string }) {
 
   const password = await promise;
 
+  console.log('TG_LOG: rawSign: storage, accountId, password, data', storage, accountId, password, data);
   return ton.rawSign(storage, accountId, password, data);
 }
 

@@ -104,6 +104,7 @@ export async function rawSign(storage: Storage, accountId: string, password: str
   }
 
   const signature = nacl.sign.detached(hexToBytes(dataHex), privateKey);
+  console.log('TG_LOG: signature bytesToHex(signature)', signature, bytesToHex(signature));
 
   return bytesToHex(signature);
 }
