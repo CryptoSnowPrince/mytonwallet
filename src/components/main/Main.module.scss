@@ -1,0 +1,37 @@
+@use "sass:color";
+
+@import "../../styles/variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 25rem;
+  height: 100vh;
+  max-height: calc(var(--vh, 1vh) * 100);
+  margin: auto;
+  padding: 0 1rem 1rem;
+
+  @supports (padding-bottom: env(safe-area-inset-bottom)) {
+    padding-bottom: max(env(safe-area-inset-bottom), 1rem);
+  }
+
+  :global(html.is-extension) & {
+    height: auto;
+    min-height: calc(var(--vh, 1vh) * 100);
+    max-height: none;
+    padding: 0 0.75rem !important;
+  }
+
+  @media (max-width: 600px) {
+    height: auto;
+    min-height: calc(var(--vh, 1vh) * 100);
+    max-height: none;
+    padding: 0 0.75rem !important;
+  }
+}
+
+.head {
+  position: relative;
+  z-index: 2;
+}

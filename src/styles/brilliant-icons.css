@@ -1,0 +1,106 @@
+@font-face {
+    font-family: "brilliant-icons";
+    src: url("./brilliant-icons.woff?86c932e1f01ff97effa02dc2879c41f0") format("woff"),
+url("./brilliant-icons.woff2?86c932e1f01ff97effa02dc2879c41f0") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    font-family: brilliant-icons !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-weight: 400 !important;
+}
+
+.icon-arrow-down::before {
+    content: "\f101";
+}
+.icon-arrow-up::before {
+    content: "\f102";
+}
+.icon-caret-down::before {
+    content: "\f103";
+}
+.icon-chevron-down::before {
+    content: "\f104";
+}
+.icon-chevron-left::before {
+    content: "\f105";
+}
+.icon-chevron-right::before {
+    content: "\f106";
+}
+.icon-clock::before {
+    content: "\f107";
+}
+.icon-close::before {
+    content: "\f108";
+}
+.icon-coinmarket::before {
+    content: "\f109";
+}
+.icon-copy::before {
+    content: "\f10a";
+}
+.icon-earn::before {
+    content: "\f10b";
+}
+.icon-eye-closed::before {
+    content: "\f10c";
+}
+.icon-eye::before {
+    content: "\f10d";
+}
+.icon-menu::before {
+    content: "\f10e";
+}
+.icon-paste::before {
+    content: "\f10f";
+}
+.icon-pen::before {
+    content: "\f110";
+}
+.icon-percent::before {
+    content: "\f111";
+}
+.icon-plus::before {
+    content: "\f112";
+}
+.icon-qrcode::before {
+    content: "\f113";
+}
+.icon-question::before {
+    content: "\f114";
+}
+.icon-receive-alt::before {
+    content: "\f115";
+}
+.icon-receive::before {
+    content: "\f116";
+}
+.icon-search::before {
+    content: "\f117";
+}
+.icon-send-alt::before {
+    content: "\f118";
+}
+.icon-send::before {
+    content: "\f119";
+}
+.icon-share::before {
+    content: "\f11a";
+}
+.icon-star-filled::before {
+    content: "\f11b";
+}
+.icon-star::before {
+    content: "\f11c";
+}
+.icon-tonscan::before {
+    content: "\f11d";
+}
+.icon-trash::before {
+    content: "\f11e";
+}

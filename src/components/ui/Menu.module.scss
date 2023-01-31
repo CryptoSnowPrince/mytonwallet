@@ -1,0 +1,121 @@
+.wrapper {
+  user-select: none;
+
+  position: relative;
+}
+
+.bubble {
+  --offset-y: calc(100% + 0.5rem);
+  --offset-x: 0;
+
+  position: absolute;
+  z-index: var(--z-menu-bubble);
+  transform: scale(0.5);
+
+  overflow: hidden;
+  overscroll-behavior: contain;
+  display: block;
+
+  margin: 0;
+
+  list-style: none;
+
+  background-color: var(--color-background-drop-down);
+  border-radius: var(--border-radius-default);
+  box-shadow: var(--default-shadow);
+
+  transition: var(--dropdown-transition) !important;
+
+  &:global(.open) {
+    transform: scale(1);
+  }
+
+  &:global(.closing) {
+    transition: var(--dropdown-transition-backwards) !important;
+
+    :global(html.animation-level-0) & {
+      transition: none !important;
+    }
+  }
+
+  &.top {
+    top: var(--offset-y-value, var(--offset-y));
+  }
+
+  &.bottom {
+    bottom: var(--offset-y);
+  }
+
+  &.left {
+    left: var(--offset-x);
+  }
+
+  &.right {
+    right: var(--offset-x-value, var(--offset-x));
+  }
+
+  :global(html.animation-level-0) & {
+    transition: none !important;
+  }
+}
+
+.backdrop {
+  position: fixed;
+  z-index: var(--z-menu-backdrop);
+  top: -100vh;
+  right: -100vw;
+  bottom: -100vh;
+  left: -100vw;
+}
+
+.menu {
+  min-width: 13.5rem;
+  padding: 0.25rem;
+}
+
+.suggestion {
+  --offset-y: calc(100% - 0.5rem);
+
+  transform: scaleY(0.5) !important;
+  transform-origin: top !important;
+
+  width: 100%;
+  padding: 0.375rem;
+
+  &:global(.open) {
+    transform: scaleY(1) !important;
+  }
+}
+
+.dropdown {
+  --offset-y: calc(100% - 1.25rem);
+
+  transform: translateY(-0.375rem) !important;
+
+  overflow: auto;
+
+  min-width: auto;
+  max-height: 16rem;
+  padding: 0.5rem;
+
+  &:global(.open) {
+    transform: translateY(0) !important;
+  }
+
+  &.right {
+    --offset-x: -0.75rem;
+  }
+
+  &.bottom {
+    transform: translateY(0.375rem) !important;
+
+    &:global(.open) {
+      transform: translateY(0) !important;
+    }
+  }
+
+
+  @supports (overflow: overlay) {
+    overflow-y: overlay;
+  }
+}
